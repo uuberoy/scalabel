@@ -7,7 +7,9 @@ A screenshot of bounding box annotation interface:
 
 ## Initial Setup ##
 * Create a directory to store image annotations: 
+```
 mkdir ../data
+```
 * Install Golang by building and running a Docker image from the 
 Dockerfile.  
 
