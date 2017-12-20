@@ -1,8 +1,9 @@
 # Scalable Anntoation Tooling
 
 ## Overview ##
-SAT is a versatile and scalable tool that supports all kinds of annotations needed in a driving database, such as bounding box, semantic instance segmentation, and lane detection. Here are our labeling tool workflow diagram and a screenshot of bounding box annotation interface.
-![alt text](/example/workflow.jpg)  ![alt text](/example/bbox_tool.jpg)
+SAT is a versatile and scalable tool that supports all kinds of annotations needed in a driving database, such as bounding box, semantic instance segmentation, and lane detection.  
+A screenshot of bounding box annotation interface:
+![alt text](/example/bbox_tool.jpg)
 
 ## Initial Setup ##
 * Create a directory to store image annotations: 
@@ -44,6 +45,9 @@ created.
 * You can download a list of task URLs, and send them to your 
 vendor. Vendors can concurrently access and work on one task URL. 
 * You can download all result of annotation at anytime.
+
+Here is a labeling tool workflow diagram:
+![alt text](/example/workflow.jpg) 
 
 ## Directories ##
 * app folder contains front-end scripts for control panel, bounding box, 
