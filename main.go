@@ -188,7 +188,9 @@ func main() {
 	http.HandleFunc("/create", createHandler)
 	http.HandleFunc("/dashboard", dashboardHandler)
 	http.HandleFunc("/2d_bbox_labeling", bboxLabelingHandler)
-	http.HandleFunc("/2d_poly_labeling", regionLabelingHandler)
+	http.HandleFunc("/2d_road_labeling", roadLabelingHandler)
+	http.HandleFunc("/2d_seg_labeling", segLabelingHandler)
+	http.HandleFunc("/2d_lane_labeling", laneLabelingHandler)
 	http.HandleFunc("/image_labeling", imageLabelingHandler)
 
 	http.HandleFunc("/result", readResultHandler)
@@ -234,8 +236,18 @@ func bboxLabelingHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(HTML)
 }
 
-func regionLabelingHandler(w http.ResponseWriter, r *http.Request) {
-	HTML, _ = ioutil.ReadFile("./app/annotation/region.html")
+func roadLabelingHandler(w http.ResponseWriter, r *http.Request) {
+	HTML, _ = ioutil.ReadFile("./app/annotation/road.html")
+	w.Write(HTML)
+}
+
+func segLabelingHandler(w http.ResponseWriter, r *http.Request) {
+	HTML, _ = ioutil.ReadFile("./app/annotation/seg.html")
+	w.Write(HTML)
+}
+
+func laneLabelingHandler(w http.ResponseWriter, r *http.Request) {
+	HTML, _ = ioutil.ReadFile("./app/annotation/lane.html")
 	w.Write(HTML)
 }
 

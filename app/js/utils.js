@@ -115,8 +115,6 @@ function loadAssignment() {
             // update toolbar and progress bar
             updateCategorySelect();
             updateProgressBar();
-
-
         }
     };
 

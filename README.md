@@ -39,7 +39,7 @@ task configurations such as project name, task size, label type, and vendor ID.
 <data_dir>/Submissions/<project name>/, and log files in 
 <data_dir>/Logs/<project name>/
 * Task size: You can specify number of images to be labeled for each assignment.
-* Label type: We provide three different label types: '2d_bbox', '2d_poly', 'image'.
+* Label type: We provide three different label types: '2d_bbox', '2d_road', '2d_seg', '2d_lane','image'.
 * Vendor ID: This keeps track of which vendor/annotator to be assigned to. 
 You can specify '0' if unsure.
 
