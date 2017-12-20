@@ -1,18 +1,21 @@
 # Scalable Anntoation Tooling
 
-## Images and Labels
+## Overview ##
+SAT is a versatile and scalable tool that supports all kinds of annotations needed in a driving database, such as bounding box, semantic instance segmentation, and lane detection. Here are our labeling tool workflow diagram and a screenshot of bounding box annotation interface.
+
+## Images and Labels ##
 * Create label.txt with a list of object categories you wish to label. 
 Refer to examples in /example/bbox_label.txt and /examples/drivable_label.txt. 
 * Create image_list.json with a list of paths to image files. These images 
 should be publicly accessible or stored in the server. Refer to example in
 /example/image_list.json
 
-## Running Server 
+## Running Server ##
 Specify a port to start the server and a directory path to store 
 image annotations. Use the following command to run the server:
 go run main.go --port 8686 --data_dir "../data"
 
-## Navigating the tool
+## Navigating the tool ##
 We'll demonstrate how to navigate our tool. Here, we default to localhost and 
 listen to port 8686.
 
@@ -37,7 +40,7 @@ created.
 vendor. Vendors can concurrently access and work on one task URL. 
 * You can download all result of annotation at anytime.
 
-### Directories ###
+## Directories ##
 * app folder contains front-end scripts for control panel, bounding box, 
 image level, and drivable annotations.
 * example folder contains task examples.
