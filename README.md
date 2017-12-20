@@ -21,7 +21,9 @@ should be publicly accessible or stored in the server. Refer to example in
 ## Running Server ##
 Specify a port to start the server and a directory path to store 
 image annotations. Use the following command to run the server:
+```
 go run main.go --port 8686 --data_dir "../data"
+```
 
 ## Navigating the tool ##
 We'll demonstrate how to navigate our tool. Here, we default to localhost and 
