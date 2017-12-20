@@ -21,12 +21,18 @@ function preload(imageArray, index) {
             // addEvent("image loaded", index);
             if (index === 0) {
                 // display when the first image is loaded
-                bboxLabeling = new BBoxLabeling({
-                    url: preloaded_images[current_index].src
-                });
-                bboxLabeling.replay();
+                if(type == "bbox"){
+                    bboxLabeling = new BBoxLabeling({
+                        url: preloaded_images[current_index].src
+                    });
+                    bboxLabeling.replay();
+                } else {
+                    polyLabeling = new PolyLabeling({
+                        url: preloaded_images[current_index].src
+                    });
+                    polyLabeling.updateImage(preloaded_images[current_index].src);
+                }
                 num_display = num_display + 1;
-                //addEvent("display", index);
             }
             preload(imageArray, index + 1);
         };
@@ -36,7 +42,8 @@ function preload(imageArray, index) {
         };
         preloaded_images[index].src = imageArray[index].url;
     } else {
-        //console.log("finish preloading all images.");
+        $("#prev_btn").attr("disabled", false);
+        $("#next_btn").attr("disabled", false);
     }
 }
 
@@ -48,23 +55,31 @@ function updateProgressBar() {
 
 
 function updateCategorySelect() {
-    var category = assignment.category;
-    var category_select = $("select#category_select");
-
-    for (var i = 0; i < category.length; i++) {
-        if (category[i]) {
-            category_select.append("<option>" +
-                category[i] + "</option>");
+    if (type == "poly"){
+        updateCategory();
+    } else {
+        var category = assignment.category;
+        var category_select = $("select#category_select");
+        for (var i = 0; i < category.length; i++) {
+            if (category[i]) {
+                category_select.append("<option>" +
+                    category[i] + "</option>");
+            }
         }
+        $("select#category_select").val(assignment.category[0]);
     }
-    $("select#category_select").val(assignment.category[0]);
 }
 
 // Update global image list
 function saveLabels() {
-    bboxLabeling.submitLabels();
-    image_list[current_index].labels = bboxLabeling.output_labels;
-    image_list[current_index].tags = bboxLabeling.output_tags;
+    if(type == "bbox") {
+        bboxLabeling.submitLabels();
+        image_list[current_index].labels = bboxLabeling.output_labels;
+        image_list[current_index].tags = bboxLabeling.output_tags;
+    } else {
+        polyLabeling.submitLabels();
+        image_list[current_index].labels = polyLabeling.output_labels;
+    }
 }
 
 function submitAssignment() {
@@ -110,9 +125,18 @@ function loadAssignment() {
 
             // preload images
             preload(image_list);
-
-            getIPAddress();
-            // update toolbar and progress bar
+            if (type == "poly") {
+                for (var idx in image_list) {
+                    var labels = image_list[idx].labels;
+                    for (var key in labels) {
+                        if (labels.hasOwnProperty(key)) {
+                            var label = labels[key];
+                            num_poly = num_poly + 1;
+                        }
+                    }
+                }
+                $("#poly_count").text(num_poly);
+            }
             updateCategorySelect();
             updateProgressBar();
         }
@@ -168,7 +192,12 @@ function goToImage(index) {
         }
         addEvent("display", index);
         updateProgressBar();
-        bboxLabeling.updateImage(preloaded_images[index].src);
-        bboxLabeling.replay();
+        if(type == "bbox") {
+            bboxLabeling.updateImage(preloaded_images[index].src);
+            bboxLabeling.replay();
+        } else {
+            polyLabeling.clearAll();
+            polyLabeling.updateImage(preloaded_images[index].src);
+        }
     }
 }
