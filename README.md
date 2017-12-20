@@ -1,6 +1,6 @@
 # Scalable Anntoation Tooling
 
-##Images and Labels
+## Images and Labels
 * Create label.txt with a list of object categories you wish to label. 
 Refer to examples in /example/bbox_label.txt and /examples/drivable_label.txt. 
 * Create image_list.json with a list of paths to image files. These images 
