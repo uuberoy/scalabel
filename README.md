@@ -2,6 +2,12 @@
 
 ## Overview ##
 SAT is a versatile and scalable tool that supports all kinds of annotations needed in a driving database, such as bounding box, semantic instance segmentation, and lane detection. Here are our labeling tool workflow diagram and a screenshot of bounding box annotation interface.
+![alt text](/example/workflow.png)
+![alt text](/example/bbox_tool.png)
+
+## Initial Setup ##
+* Create a directory to store image annotations: 
+mkdir ../data
 
 ## Images and Labels ##
 * Create label.txt with a list of object categories you wish to label. 
