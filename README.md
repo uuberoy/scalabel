@@ -63,7 +63,9 @@ image level, drivable area, lane markings and segmentation.
 
 ## How to Use Region Annotation ##
 Region Annonation consists of annotations of drivable area, lane markings and image segmentation.
-* When you open a region annotation task, you will notice there is a tool box on the left of the screen. There are toolboxes of drivable area annotation:
+* When you open a region annotation task, you will notice there is a tool box on the left of the screen. 
+
+Toolbox of drivable area annotation:
 ![alt text](/example/tool_for_road.png)
 
 * Click along the edge of an object to draw a mask. To finish drawing, go back to the first point to form a closed path.
@@ -71,6 +73,8 @@ Region Annonation consists of annotations of drivable area, lane markings and im
 * You can change the shape of an object by dragging its vertices. If you hover your mouse on these points, they will become green and have bigger sizes.
 * You can delete a vertex by hovering and then pressing "delete".
 * You can add a vertex by dragging the corresponding midpoint. The midpoint will become a new vertex after this operation, and two other midpoints will be generated. The corresponding midpoint is in orange when you hovering your mouse on it.
+
+A screenshot of vertexs and midpoints:
 ![alt text](/example/vertex.png)![alt text](/example/midpoint.png)
 
 * You can use a local magnifier by chooseing "Magnify" in the toolbox. Or you can use "PageUp/PageDown" or click "+/-" to zoom in/out.
@@ -78,7 +82,7 @@ Region Annonation consists of annotations of drivable area, lane markings and im
 * Delete Bezier Curve: Hover your mouse on a control point of the Bezier Curve, then press "delete" on the keyboard. It will become a straight edge.
 
 
-## Some Additional Options for Segmentation Annotation##
+## Some Additional Options for Segmentation Annotation ##
 * Copy Boundary
 1. When you want to draw the coincide part of two objects, press "S/s" before drawing or during drawing;
 2. Then you can notice the polygon is no longer filled, and you can also see the vertices of other objects when moving your mouse onto them. That means you have entered the "quick draw" mode. Meanwhile, the toolbox will become blue. It will remain blue or green unless you exit the "quick draw" mode. (By press "S/s" again).
