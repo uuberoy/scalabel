@@ -63,14 +63,16 @@ image level, drivable area, lane markings and segmentation.
 
 ## How to Use Region Annotation ##
 Region Annonation consists of annotations of drivable area, lane markings and image segmentation.
-* When you open a region annotation task, you will notice there is a tool box on the left of the screen. There are toolboxes from drivable area and segmentation task:
-![alt text](/example/tool_for_road.png)[alt text](/example/tool_for_seg.png)
-* Click along the edge of an object to draw a mask. Go back to the first point to form a closed path, and a mask will generated.
+* When you open a region annotation task, you will notice there is a tool box on the left of the screen. There are toolboxes of drivable area annotation:
+![alt text](/example/tool_for_road.png)
+
+* Click along the edge of an object to draw a mask. To finish drawing, go back to the first point to form a closed path.
 * You can always double click an object and change its category in this toolbox, or click "delete" to remove it (or press "delete" on your keyboard).
 * You can change the shape of an object by dragging its vertices. If you hover your mouse on these points, they will become green and have bigger sizes.
 * You can delete a vertex by hovering and then pressing "delete".
 * You can add a vertex by dragging the corresponding midpoint. The midpoint will become a new vertex after this operation, and two other midpoints will be generated. The corresponding midpoint is in orange when you hovering your mouse on it.
 ![alt text](/example/vertex.png)![alt text](/example/midpoint.png)
+
 * You can use a local magnifier by chooseing "Magnify" in the toolbox. Or you can use "PageUp/PageDown" or click "+/-" to zoom in/out.
 * Add Bezier Curve: Hover your mouse on a midpoint, then press "B(b)" on the keyboard. Then it will split to two points on the corresponding edge. And you can drag these two points and another two endpoints to change the shape of the Bezier Curve.
 * Delete Bezier Curve: Hover your mouse on a control point of the Bezier Curve, then press "delete" on the keyboard. It will become a straight edge.
