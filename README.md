@@ -11,7 +11,11 @@ A screenshot of bounding box annotation interface:
 mkdir ../data
 ```
 * Install Golang by building and running a Docker image from the 
-Dockerfile.  
+Dockerfile. 
+e.x.
+```
+docker build .
+```
 
 ## Images and Labels ##
 * Create label.txt with a list of object categories you wish to label. 
@@ -62,14 +66,14 @@ image level, drivable area, lane markings and segmentation.
 * main.go is the back-end go-lang server script.
 
 ## How to Use Region Annotation ##
-Region Annonation consists of annotations of drivable area, lane markings and image segmentation.
+Region Annonation consists of annotations of drivable area, lane markings and image segmentation, corresponding to label types of "2d_road", "2d_lane", and "2d_seg".
 * When you open a region annotation task, you will notice there is a tool box on the left of the screen. 
-* Click along the edge of an object to draw a mask. To finish drawing, go back to the first point to form a closed path.
+* Click along the edge of an object to draw a mask. To finish drawing, go back to the first vertex (where you started) to form a closed path.
 * By pressing "ESC", you can remove an unfinished object.
 * You can always double click an object and change its category in this toolbox, or click "delete" to remove it (or press "delete" on your keyboard).
-* You can change the shape of an object by dragging its vertices. If you hover your mouse on these points, they will become green and have bigger sizes.
+* You can change the shape of an object by dragging its vertices. If you hover your mouse on these points, they will become green and bigger.
 * You can delete a vertex by hovering and then pressing "delete".
-* You can add a vertex by dragging the corresponding midpoint. The midpoint will become a new vertex after this operation, and two other midpoints will be generated. The corresponding midpoint is in orange when you hovering your mouse on it.
+* You can add a vertex by dragging the corresponding midpoint (in pink). The midpoint will become a new vertex after this operation, and two other midpoints will be generated. The corresponding midpoint is in orange when you hovering your mouse on it.
 
 
 A screenshot of vertexs and midpoints:
@@ -78,17 +82,17 @@ A screenshot of vertexs and midpoints:
 ![alt text](/example/vertex.png)![alt text](/example/midpoint.png)
 
 
-* You can use a local magnifier by choosing "Magnify" in the toolbox. Or you can use "PageUp/PageDown" or click "+/-" to zoom in/out.
-* Add Bezier Curve: Hover your mouse on a midpoint, then press "B(b)" on the keyboard. Then it will split to two points on the corresponding edge. And you can drag these two points and another two endpoints to change the shape of the Bezier Curve.
+* You can use a local magnifier by choosing "Magnify" in the toolbox. Or you can press "PageUp/PageDown" on your keyboard or click "+/-" on top of the webpage to zoom in/out.
+* Add Bezier Curve: Hover your mouse on a midpoint, then press "**B**" or "**b**" on the keyboard. Then it will split to two points on the corresponding edge. And you can drag these two points and another two endpoints to change the shape of the Bezier Curve.
 * Delete Bezier Curve: Hover your mouse on a control point of the Bezier Curve, then press "delete" on the keyboard. It will become a straight edge.
 
 
 ## Some Additional Options for Segmentation Annotation ##
 * Copy Boundary
-1. When you want to draw the coincide part of two objects, press "S/s" before drawing or during drawing;
-2. Then you can notice the polygon is no longer filled, and you can also see the vertices of other objects when moving your mouse onto them. That means you have entered the "quick draw" mode. Meanwhile, the toolbox will become blue. It will remain blue or green unless you exit the "quick draw" mode. (By press "S/s" again).
+1. When you want to draw the coincide part of two objects, press "**S**" or "**s**" before or during drawing;
+2. Then you can notice the polygon is no longer filled, and you can also see the vertices of other objects when moving your mouse onto them. That means you have entered the "quick draw" mode. Meanwhile, the toolbox will become blue. It will remain blue or green unless you exit the "quick draw" mode. (By pressing "S/s" again).
 3. Select two vertices on the border by clicking. After your first click, the toolbox will turn green, and the object you selected will change color. After your second click, the toolbox will change from green to blue. You can see a polyline is formed.
-4. You can use "PageLeft/PageRight" to choose the border, because there are two directions: clockwise or counter-clockwise.
+4. You can use "PageLeft/PageRight" on your keyboard to choose the border, because there are two directions: clockwise or counter-clockwise.
 5. The toolbox will remain green before you click a pair of points on the same object. And when you click on a new object, it will remain green, since no coincide border is formed, so that you can continue finding its pair.
 6. Click the background image, the toolbox will be blue. So in conclusion, color green means you have finished the first click and should look for the second point; color blue means your should look for the first point.
 7. The same as ordinary draw mode, press "delete" to delete the latest vertex or last added border, and press "esc" to delete the whole object. And when a closed path is formed, your annotation is finished.
