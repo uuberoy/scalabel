@@ -39,7 +39,7 @@ task configurations such as project name, task size, label type, and vendor ID.
 <data_dir>/Submissions/<project name>/, and log files in 
 <data_dir>/Logs/<project name>/
 * Task size: You can specify number of images to be labeled for each assignment.
-* Label type: We provide three different label types: '2d_bbox', '2d_road', '2d_seg', '2d_lane','image'.
+* Label type: We provide five different label types: '2d_bbox', '2d_road', '2d_seg', '2d_lane','image'.
 * Vendor ID: This keeps track of which vendor/annotator to be assigned to. 
 You can specify '0' if unsure.
 
@@ -78,7 +78,7 @@ A screenshot of vertexs and midpoints:
 ![alt text](/example/vertex.png)![alt text](/example/midpoint.png)
 
 
-* You can use a local magnifier by chooseing "Magnify" in the toolbox. Or you can use "PageUp/PageDown" or click "+/-" to zoom in/out.
+* You can use a local magnifier by choosing "Magnify" in the toolbox. Or you can use "PageUp/PageDown" or click "+/-" to zoom in/out.
 * Add Bezier Curve: Hover your mouse on a midpoint, then press "B(b)" on the keyboard. Then it will split to two points on the corresponding edge. And you can drag these two points and another two endpoints to change the shape of the Bezier Curve.
 * Delete Bezier Curve: Hover your mouse on a control point of the Bezier Curve, then press "delete" on the keyboard. It will become a straight edge.
 
@@ -90,7 +90,7 @@ A screenshot of vertexs and midpoints:
 3. Select two vertices on the border by clicking. After your first click, the toolbox will turn green, and the object you selected will change color. After your second click, the toolbox will change from green to blue. You can see a polyline is formed.
 4. You can use "PageLeft/PageRight" to choose the border, because there are two directions: clockwise or counter-clockwise.
 5. The toolbox will remain green before you click a pair of points on the same object. And when you click on a new object, it will remain green, since no coincide border is formed, so that you can continue finding its pair.
-6. Click the background image, the toolbox will be blue. So in conclude, color green means you have finished the first click and should look for the second point; color blue means your should look for the first point.
+6. Click the background image, the toolbox will be blue. So in conclusion, color green means you have finished the first click and should look for the second point; color blue means your should look for the first point.
 7. The same as ordinary draw mode, press "delete" to delete the latest vertex or last added border, and press "esc" to delete the whole object. And when a closed path is formed, your annotation is finished.
 8. You can use it to click anywhere like the ordinary draw mode, it only provides function to draw coincide part quickly by clicking twice.
 * Link
