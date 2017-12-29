@@ -11,16 +11,16 @@ A screenshot of bounding box annotation interface:
 mkdir ../data
 ```
 * Install Golang by building and running a Docker image from the 
-Dockerfile. 
+Dockerfile.  
 e.x.
 ```
 docker build .
 ```
 
 ## Images and Labels ##
-* Create label.txt with a list of object categories you wish to label. 
+* Create **label.txt** with a list of object categories you wish to label. 
 Refer to examples in /example/bbox_label.txt and /examples/drivable_label.txt. 
-* Create image_list.json with a list of paths to image files. These images 
+* Create **image_list.json** with a list of paths to image files. These images 
 should be publicly accessible or stored in the server. Refer to example in
 /example/image_list.json
 
@@ -38,16 +38,16 @@ listen to port 8686.
 1. Go to http://localhost:8686/create to create a new task. You need to 
 upload label.txt and image_list.json you just created, and specify other 
 task configurations such as project name, task size, label type, and vendor ID. 
-* Project name: You can find all task assignments in 
+* **Project name**: You can find all task assignments in 
 <data_dir>/Assignments/<project name>/, completed annotations in  
 <data_dir>/Submissions/<project name>/, and log files in 
 <data_dir>/Logs/<project name>/
-* Task size: You can specify number of images to be labeled for each assignment.
-* Label type: We provide five different label types: '2d_bbox', '2d_road', '2d_seg', '2d_lane','image'.
-* Vendor ID: This keeps track of which vendor/annotator to be assigned to. 
+* **Task size**: You can specify number of images to be labeled for each assignment.
+* **Label type**: We provide five different label types: '2d_bbox', '2d_road', '2d_seg', '2d_lane','image'.
+* **Vendor ID**: This keeps track of which vendor/annotator to be assigned to. 
 You can specify '0' if unsure.
 
-2. Once you click 'enter', 'go to dashboard' will direct you to 
+2. Once you click '**enter**', '**go to dashboard**' will direct you to 
 http://localhost:8686/dashboard?project_name=<project 
 name>... 
 * From here, you can access and monitor list of tasks 
@@ -88,7 +88,7 @@ A screenshot of vertexs and midpoints:
 
 
 ## Some Additional Options for Segmentation Annotation ##
-* Copy Boundary
+* **Copy Boundary**  
 1. When you want to draw the coincide part of two objects, press "**S**" or "**s**" before or during drawing;
 2. Then you can notice the polygon is no longer filled, and you can also see the vertices of other objects when moving your mouse onto them. That means you have entered the "quick draw" mode. Meanwhile, the toolbox will become blue. It will remain blue or green unless you exit the "quick draw" mode. (By pressing "S/s" again).
 3. Select two vertices on the border by clicking. After your first click, the toolbox will turn green, and the object you selected will change color. After your second click, the toolbox will change from green to blue. You can see a polyline is formed.
@@ -97,7 +97,8 @@ A screenshot of vertexs and midpoints:
 6. Click the background image, the toolbox will be blue. So in conclusion, color green means you have finished the first click and should look for the second point; color blue means your should look for the first point.
 7. The same as ordinary draw mode, press "delete" to delete the latest vertex or last added border, and press "esc" to delete the whole object. And when a closed path is formed, your annotation is finished.
 8. You can use it to click anywhere like the ordinary draw mode, it only provides function to draw coincide part quickly by clicking twice.
-* Link
-1. You can select one of them (by double click), and click "link" button, then single click the others, and click "finish link".
+* **Link**  
+To link separated parts of an object into one with the same object ID
+1. You can select one part of the object (by double click), and click "link" button, then single click the others, and click "finish link".
 2. You can also click "Link" first, then single click every object to be linked, and then click "finish link".
 
