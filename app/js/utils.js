@@ -83,18 +83,23 @@ function saveLabels() {
 }
 
 function submitAssignment() {
+
     var x = new XMLHttpRequest();
     x.onreadystatechange = function () {
         if (x.readyState === 4) {
             //console.log(x.response)
         }
     };
+
+    'use strict';
+
+    var CircularJSON = window.CircularJSON;
     assignment.images = image_list;
     assignment.numLabeledImages = current_index + 1;
     assignment.userAgent = navigator.userAgent;
 
     x.open("POST", "/postSubmission");
-    x.send(JSON.stringify(assignment));
+    x.send(CircularJSON.stringify(assignment));
 }
 
 function submitLog() {
