@@ -50,7 +50,7 @@ function preload(imageArray, index) {
 function updateProgressBar() {
     var progress = $("#progress");
     progress.html(" " + (current_index + 1).toString() + "/" +
-        assignment.taskSize.toString())
+        image_list.length.toString())
 }
 
 
@@ -197,7 +197,7 @@ function goToImage(index) {
         }
         addEvent("display", index);
         updateProgressBar();
-        if(type == "bbox") {
+        if(type == 'bbox') {
             bboxLabeling.updateImage(preloaded_images[index].src);
             bboxLabeling.replay();
         } else {
