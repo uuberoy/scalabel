@@ -156,8 +156,8 @@
 <script type="text/javascript">
     // Global variables
     var image_list = [];
-    var current_index = 0;
-    var num_display = 0;
+    var currentIndex = 0;
+    var numDisplay = 0;
     var bboxLabeling;
     var preloaded_images = [];
     var assignment;
@@ -182,12 +182,12 @@
 
         // Go to previous image
         $("#prev_btn").click(function () {
-            goToImage(current_index - 1)
+            goToImage(currentIndex - 1)
         });
 
         // Go to next image
         $("#next_btn").click(function () {
-            goToImage(current_index + 1)
+            goToImage(currentIndex + 1)
         });
 
         // Manual save button
@@ -195,10 +195,10 @@
             saveLabels();
             // auto save submission for the current session.
             submitAssignment();
-            if (current_index !== image_list.length - 1) {
-                addEvent("save", current_index);
+            if (currentIndex !== image_list.length - 1) {
+                addEvent("save", currentIndex);
             } else {
-                addEvent("submit", current_index);
+                addEvent("submit", currentIndex);
                 alert("Good Job! You've completed this assignment.");
             }
         });
