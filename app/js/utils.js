@@ -1,3 +1,9 @@
+/* global preloaded_images:true polyLabeling:true bboxLabeling:true
+ type:true image_list:true numDisplay:true assignment:true
+ BBoxLabeling currentIndex:true PolyLabeling updateCategory numPoly:true
+*/
+
+/* exported loadAssignment goToImage getIPAddress */
 
 /**
 * Summary: Record timestamp in milliseconds, action, and target image index.
@@ -33,16 +39,17 @@ function preload(imageArray, index) {
                 // display when the first image is loaded
                 if (type == 'bbox') {
                     bboxLabeling = new BBoxLabeling({
-                        url: preloaded_images[current_index].src,
+                        url: preloaded_images[currentIndex].src,
                     });
                     bboxLabeling.replay();
                 } else {
                     polyLabeling = new PolyLabeling({
-                        url: preloaded_images[current_index].src,
+                        url: preloaded_images[currentIndex].src,
                     });
-                    polyLabeling.updateImage(preloaded_images[current_index].src);
+                    polyLabeling.updateImage(
+                        preloaded_images[currentIndex].src);
                 }
-                num_display = num_display + 1;
+                numDisplay = numDisplay + 1;
             }
             preload(imageArray, index + 1);
         };
@@ -63,7 +70,7 @@ function preload(imageArray, index) {
 */
 function updateProgressBar() {
     let progress = $('#progress');
-    progress.html(' ' + (current_index + 1).toString() + '/' +
+    progress.html(' ' + (currentIndex + 1).toString() + '/' +
         image_list.length.toString());
 }
 
@@ -76,10 +83,10 @@ function updateCategorySelect() {
         updateCategory();
     } else {
         let category = assignment.category;
-        let category_select = $('select#category_select');
+        let categorySelect = $('select#category_select');
         for (let i = 0; i < category.length; i++) {
             if (category[i]) {
-                category_select.append('<option>' +
+                categorySelect.append('<option>' +
                     category[i] + '</option>');
             }
         }
@@ -94,11 +101,11 @@ function updateCategorySelect() {
 function saveLabels() {
     if (type == 'bbox') {
         bboxLabeling.submitLabels();
-        image_list[current_index].labels = bboxLabeling.output_labels;
-        image_list[current_index].tags = bboxLabeling.output_tags;
+        image_list[currentIndex].labels = bboxLabeling.output_labels;
+        image_list[currentIndex].tags = bboxLabeling.output_tags;
     } else {
         polyLabeling.submitLabels();
-        image_list[current_index].labels = polyLabeling.output_labels;
+        image_list[currentIndex].labels = polyLabeling.output_labels;
     }
 }
 
@@ -118,7 +125,7 @@ function submitAssignment() {
 
     let CircularJSON = window.CircularJSON;
     assignment.images = image_list;
-    assignment.numLabeledImages = current_index + 1;
+    assignment.numLabeledImages = currentIndex + 1;
     assignment.userAgent = navigator.userAgent;
 
     x.open('POST', '/postSubmission');
@@ -137,7 +144,7 @@ function submitLog() {
         }
     };
     assignment.images = image_list;
-    assignment.numLabeledImages = current_index + 1;
+    assignment.numLabeledImages = currentIndex + 1;
     assignment.userAgent = navigator.userAgent;
 
     x.open('POST', '/postLog');
@@ -155,8 +162,8 @@ function loadAssignment() {
             // console.log(x.response);
             assignment = JSON.parse(x.response);
             image_list = assignment.images;
-            current_index = 0;
-            addEvent('start labeling', current_index);
+            currentIndex = 0;
+            addEvent('start labeling', currentIndex);
             assignment.startTime = Math.round(new Date() / 1000);
 
             // preload images
@@ -166,12 +173,14 @@ function loadAssignment() {
                     let labels = image_list[idx].labels;
                     for (let key in labels) {
                         if (labels.hasOwnProperty(key)) {
-                            let label = labels[key];
-                            num_poly = num_poly + 1;
+                            // let label = labels[key];
+                            // 'label' is assigned a value but never used
+                            // To be completed
+                            numPoly = numPoly + 1;
                         }
                     }
                 }
-                $('#poly_count').text(num_poly);
+                $('#poly_count').text(numPoly);
             }
             updateCategorySelect();
             updateProgressBar();
@@ -209,7 +218,7 @@ function getIPAddress() {
 function goToImage(index) {
     saveLabels();
     // auto save log every twenty five images displayed
-    if (num_display % 25 === 0 && num_display !== 0) {
+    if (numDisplay % 25 === 0 && numDisplay !== 0) {
         submitLog();
         addEvent('save log', index);
     }
@@ -222,8 +231,8 @@ function goToImage(index) {
         addEvent('submit', index);
         alert('Good Job! You\'ve completed this assignment.');
     } else {
-        current_index = index;
-        num_display = num_display + 1;
+        currentIndex = index;
+        numDisplay = numDisplay + 1;
         addEvent('save', index);
         if (index === image_list.length - 1) {
             $('#save_btn').text('Submit');
