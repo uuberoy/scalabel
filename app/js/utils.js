@@ -1,4 +1,10 @@
-// Record timestamp in milliseconds, action, and target image index
+
+/**
+* Summary: Record timestamp in milliseconds, action, and target image index.
+* @param {type} action: To be completed.
+* @param {type} index: Description.
+* @param {type} position: Description.
+*/
 function addEvent(action, index, position) {
     if (!assignment.events) {
         assignment.events = [];
@@ -12,7 +18,11 @@ function addEvent(action, index, position) {
     assignment.events.push(event);
 }
 
-// Preload images using browser caching
+/**
+* Summary: Preload images using browser caching.
+* @param {type} imageArray: To be completed.
+* @param {type} index: Description.
+*/
 function preload(imageArray, index) {
     index = index || 0;
     if (imageArray && imageArray.length > index) {
@@ -47,13 +57,20 @@ function preload(imageArray, index) {
     }
 }
 
+/**
+* Summary: To be completed.
+*
+*/
 function updateProgressBar() {
     let progress = $('#progress');
     progress.html(' ' + (current_index + 1).toString() + '/' +
         image_list.length.toString());
 }
 
-
+/**
+* Summary: To be completed.
+*
+*/
 function updateCategorySelect() {
     if (type == 'poly') {
         updateCategory();
@@ -70,7 +87,10 @@ function updateCategorySelect() {
     }
 }
 
-// Update global image list
+/**
+* Summary: Update global image list.
+*
+*/
 function saveLabels() {
     if (type == 'bbox') {
         bboxLabeling.submitLabels();
@@ -82,6 +102,10 @@ function saveLabels() {
     }
 }
 
+/**
+* Summary: To be completed.
+*
+*/
 function submitAssignment() {
     let x = new XMLHttpRequest();
     x.onreadystatechange = function() {
@@ -101,6 +125,10 @@ function submitAssignment() {
     x.send(CircularJSON.stringify(assignment));
 }
 
+/**
+* Summary: To be completed.
+*
+*/
 function submitLog() {
     let x = new XMLHttpRequest();
     x.onreadystatechange = function() {
@@ -116,6 +144,10 @@ function submitLog() {
     x.send(JSON.stringify(assignment));
 }
 
+/**
+* Summary: To be completed.
+*
+*/
 function loadAssignment() {
     let x = new XMLHttpRequest();
     x.onreadystatechange = function() {
@@ -160,12 +192,20 @@ function loadAssignment() {
     x.send(request);
 }
 
+/**
+* Summary: To be completed.
+*
+*/
 function getIPAddress() {
     $.getJSON('//ipinfo.io/json', function(data) {
         assignment.ipAddress = data;
     });
 }
 
+/**
+* Summary: To be completed.
+* @param {type} index: Description.
+*/
 function goToImage(index) {
     saveLabels();
     // auto save log every twenty five images displayed
