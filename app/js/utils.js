@@ -2,7 +2,6 @@
  type:true image_list:true numDisplay:true assignment:true
  BBoxLabeling currentIndex:true PolyLabeling updateCategory numPoly:true
 */
-
 /* exported loadAssignment goToImage getIPAddress */
 
 /**
@@ -121,15 +120,13 @@ function submitAssignment() {
         }
     };
 
-    'use strict';
-
-    let CircularJSON = window.CircularJSON;
-    assignment.images = image_list;
     assignment.numLabeledImages = currentIndex + 1;
     assignment.userAgent = navigator.userAgent;
+    // console.log(assignment.images);
+    // console.log(assignment);
 
     x.open('POST', '/postSubmission');
-    x.send(CircularJSON.stringify(assignment));
+    x.send(JSON.stringify(assignment));
 }
 
 /**
@@ -170,13 +167,15 @@ function loadAssignment() {
             preload(image_list);
             if (type == 'poly') {
                 for (let idx in image_list) {
-                    let labels = image_list[idx].labels;
-                    for (let key in labels) {
-                        if (labels.hasOwnProperty(key)) {
-                            // let label = labels[key];
-                            // 'label' is assigned a value but never used
-                            // To be completed
-                            numPoly = numPoly + 1;
+                    if (image_list[idx].hasOwnProperty('labels')) {
+                        let labels = image_list[idx].labels;
+                        for (let key in labels) {
+                            if (labels.hasOwnProperty(key)) {
+                                // let label = labels[key];
+                                // 'label' is assigned a value but never used
+                                // To be completed
+                                numPoly = numPoly + 1;
+                            }
                         }
                     }
                 }
@@ -189,12 +188,12 @@ function loadAssignment() {
 
     // get params from url path
     let searchParams = new URLSearchParams(window.location.search);
-    let task_id = searchParams.get('task_id');
-    let project_name = searchParams.get('project_name');
+    let taskId = searchParams.get('task_id');
+    let projectName = searchParams.get('project_name');
 
     let request = JSON.stringify({
-        'assignmentId': task_id,
-        'projectName': project_name,
+        'assignmentId': taskId,
+        'projectName': projectName,
     });
 
     x.open('POST', '/requestSubmission');
