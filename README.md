@@ -79,7 +79,7 @@ A screenshot of vertexs and midpoints:
 ![alt text](/example/vertex.png)![alt text](/example/midpoint.png)
 
 
-* To zoom in/out of an image, press **PageUp/PageDown** on keyboard, or use a local magnifier by choosing **Magnify** in the toolbox, or click **+/-** on top of the webpage.
+* To zoom in/out of an image, press **PageUp/PageDown** on keyboard, or use a local magnifier by choosing **Magnify** in the toolbox, or click **+/-** on top of the webpage.  
 Bezier Curve:
 * To add bezier curve: Hover your mouse on a midpoint, then press "**B**" or "**b**" on the keyboard. The midpoint will split into two points on the corresponding edge, and you can drag these two points and the other two endpoints to change the shape of the Bezier Curve.
 * To delete bezier curve: Hover your mouse on a control point of the Bezier Curve, then press **delete** on the keyboard. It will become a straight edge.
