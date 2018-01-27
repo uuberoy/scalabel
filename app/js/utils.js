@@ -1,5 +1,5 @@
 /* global preloaded_images:true polyLabeling:true bboxLabeling:true
- type:true image_list:true numDisplay:true assignment:true
+ type:true imageList:true numDisplay:true assignment:true
  BBoxLabeling currentIndex:true PolyLabeling updateCategory numPoly:true
 */
 /* exported loadAssignment goToImage getIPAddress */
@@ -70,7 +70,7 @@ function preload(imageArray, index) {
 function updateProgressBar() {
     let progress = $('#progress');
     progress.html(' ' + (currentIndex + 1).toString() + '/' +
-        image_list.length.toString());
+        imageList.length.toString());
 }
 
 /**
@@ -100,11 +100,11 @@ function updateCategorySelect() {
 function saveLabels() {
     if (type == 'bbox') {
         bboxLabeling.submitLabels();
-        image_list[currentIndex].labels = bboxLabeling.output_labels;
-        image_list[currentIndex].tags = bboxLabeling.output_tags;
+        imageList[currentIndex].labels = bboxLabeling.output_labels;
+        imageList[currentIndex].tags = bboxLabeling.output_tags;
     } else {
         polyLabeling.submitLabels();
-        image_list[currentIndex].labels = polyLabeling.output_labels;
+        imageList[currentIndex].labels = polyLabeling.output_labels;
     }
 }
 
@@ -140,7 +140,7 @@ function submitLog() {
             // console.log(x.response)
         }
     };
-    assignment.images = image_list;
+    assignment.images = imageList;
     assignment.numLabeledImages = currentIndex + 1;
     assignment.userAgent = navigator.userAgent;
 
@@ -158,17 +158,17 @@ function loadAssignment() {
         if (x.readyState === 4) {
             // console.log(x.response);
             assignment = JSON.parse(x.response);
-            image_list = assignment.images;
+            imageList = assignment.images;
             currentIndex = 0;
             addEvent('start labeling', currentIndex);
             assignment.startTime = Math.round(new Date() / 1000);
 
             // preload images
-            preload(image_list);
+            preload(imageList);
             if (type == 'poly') {
-                for (let idx in image_list) {
-                    if (image_list[idx].hasOwnProperty('labels')) {
-                        let labels = image_list[idx].labels;
+                for (let idx in imageList) {
+                    if (imageList[idx].hasOwnProperty('labels')) {
+                        let labels = imageList[idx].labels;
                         for (let key in labels) {
                             if (labels.hasOwnProperty(key)) {
                                 // let label = labels[key];
@@ -226,18 +226,18 @@ function goToImage(index) {
 
     if (index === -1) {
         alert('This is the first image.');
-    } else if (index === image_list.length) {
+    } else if (index === imageList.length) {
         addEvent('submit', index);
         alert('Good Job! You\'ve completed this assignment.');
     } else {
         currentIndex = index;
         numDisplay = numDisplay + 1;
         addEvent('save', index);
-        if (index === image_list.length - 1) {
+        if (index === imageList.length - 1) {
             $('#save_btn').text('Submit');
             $('#save_btn').removeClass('btn-primary').addClass('btn-success');
         }
-        if (index === image_list.length - 2) {
+        if (index === imageList.length - 2) {
             $('#save_btn').removeClass('btn-success').addClass('btn-primary');
             $('#save_btn').text('Save');
         }
