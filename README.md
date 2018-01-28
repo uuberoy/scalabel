@@ -1,5 +1,7 @@
 # Scalable Anntoation Tooling
 
+[![Build Status](https://travis-ci.com/ucbdrive/sat.svg?token=9QKS6inVmkjyhrWUHjqT)](https://travis-ci.com/ucbdrive/sat)
+
 ## Overview ##
 SAT is a versatile and scalable tool that supports all kinds of annotations needed in a driving database, such as bounding box, semantic instance segmentation, and lane detection.  
 A screenshot of bounding box annotation interface:
