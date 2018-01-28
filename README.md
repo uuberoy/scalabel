@@ -88,7 +88,7 @@ Bezier Curve:
 
 
 ## Additional Options for Segmentation Annotation ##
-* **Copy Boundary**  
+###Share Border 
 1. To draw the coincide part of two objects, press "**S**" or "**s**" before or during drawing;
 2. Vertices of other objects will become visible when you move your mouse onto them. Meanwhile, the toolbox will become blue. It will remain blue or green unless you exit the "quick draw" mode. (By pressing "S/s" again).
 3. Select the first and the last vertices on the border by clicking on exiting vertices. After the first click, the object you selected will change color, and the toolbox will turn green. After the second click, a polyline will be formed, and the toolbox will change from green to blue. 
@@ -97,8 +97,13 @@ Bezier Curve:
 6. Click the background image, the toolbox will be blue. So in conclusion, color green means you have finished the first click and should look for the second point; color blue means you should look for the first point.
 7. The same as ordinary draw mode, press "delete" to delete the latest vertex or last added border, and press "esc" to delete the whole object. When a closed path is formed, your annotation is finished.
 8. You can use it to click anywhere like the ordinary draw mode, it only provides function to draw coincide part quickly by clicking **twice**.
-* **Link**  
+###Link Segments  
 To link separated parts of an object into one with the same object ID
 1. Select one part of the object (by **double click**), and click **Link** button, then single click the others. Click **finish link** when finishes.
 2. You can also click **Link** first, then single click every object to be linked. Click **finish link** when finishes.
 
+## Contribute
+Before committing code, please run
+```
+sh scripts/setup.sh
+```
