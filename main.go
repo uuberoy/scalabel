@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bufio"
 	"encoding/json"
+	"flag"
 	"io"
 	"io/ioutil"
 	"log"
@@ -9,11 +11,9 @@ import (
 	"os"
 	"path"
 	"strconv"
+	"strings"
 	"time"
 	"unicode/utf8"
-	"bufio"
-	"strings"
-	"flag"
 )
 
 type Task struct {
@@ -40,29 +40,29 @@ type Result struct {
 }
 
 type TaskInfo struct {
-	AssignmentID     string        `json:"assignmentId"`
-	ProjectName      string        `json:"projectName"`
-	WorkerID         string        `json:"workerId"`
-	LabelType        string        `json:"labelType"`
-	TaskSize         int           `json:"taskSize"`
-	SubmitTime       int64         `json:"submitTime"`
-	NumSubmissions   int           `json:"numSubmissions"`
-	NumLabeledImages int           `json:"numLabeledImages"`
-	StartTime        int64         `json:"startTime"`
+	AssignmentID     string `json:"assignmentId"`
+	ProjectName      string `json:"projectName"`
+	WorkerID         string `json:"workerId"`
+	LabelType        string `json:"labelType"`
+	TaskSize         int    `json:"taskSize"`
+	SubmitTime       int64  `json:"submitTime"`
+	NumSubmissions   int    `json:"numSubmissions"`
+	NumLabeledImages int    `json:"numLabeledImages"`
+	StartTime        int64  `json:"startTime"`
 }
 
 type Event struct {
-	Timestamp   int64  `json:"timestamp"`
-	Action      string `json:"action"`
-	TargetIndex string `json:"targetIndex"`
+	Timestamp   int64       `json:"timestamp"`
+	Action      string      `json:"action"`
+	TargetIndex string      `json:"targetIndex"`
 	Position    interface{} `json:"position"`
 }
 
 type ImageObject struct {
-	Url         string  `json:"url"`
-	GroundTruth string `json:"groundTruth"`
-	Labels      []Label    `json:"labels"`
-	Tags        []string   `json:"tags"`
+	Url         string   `json:"url"`
+	GroundTruth string   `json:"groundTruth"`
+	Labels      []Label  `json:"labels"`
+	Tags        []string `json:"tags"`
 }
 
 type Label struct {
@@ -73,11 +73,11 @@ type Label struct {
 }
 
 var (
-	Trace   *log.Logger
-	Info    *log.Logger
-	Warning *log.Logger
-	Error   *log.Logger
-	port = flag.String("port", "", "")
+	Trace    *log.Logger
+	Info     *log.Logger
+	Warning  *log.Logger
+	Error    *log.Logger
+	port     = flag.String("port", "", "")
 	data_dir = flag.String("data_dir", "", "")
 )
 
@@ -109,7 +109,6 @@ func Init(
 
 var HTML []byte
 var mux *http.ServeMux
-
 
 func (assignment *Task) GetAssignmentPath() string {
 	filename := assignment.AssignmentID
@@ -203,7 +202,7 @@ func main() {
 	http.HandleFunc("/requestSubmission", requestSubmissionHandler)
 	http.HandleFunc("/requestInfo", requestInfoHandler)
 
-	http.ListenAndServe(":" + *port, nil)
+	http.ListenAndServe(":"+*port, nil)
 }
 
 func parse(h http.HandlerFunc) http.HandlerFunc {
@@ -286,17 +285,17 @@ func postAssignmentHandler(w http.ResponseWriter, r *http.Request) {
 
 		// Initialize new assignment
 		assignment := Task{
-			ProjectName: r.FormValue("project_name"),
-			LabelType : r.FormValue("label_type"),
-			Category : labels,
-			VendorID : r.FormValue("vendor_id"),
-			AssignmentID : formatID(assignment_id),
-			WorkerID : strconv.Itoa(assignment_id),
+			ProjectName:      r.FormValue("project_name"),
+			LabelType:        r.FormValue("label_type"),
+			Category:         labels,
+			VendorID:         r.FormValue("vendor_id"),
+			AssignmentID:     formatID(assignment_id),
+			WorkerID:         strconv.Itoa(assignment_id),
 			NumLabeledImages: 0,
-			NumSubmissions: 0,
-			StartTime: recordTimestamp(),
-			Images: task.Images[i : Min(i + task_size, size)],
-			TaskSize: task_size }
+			NumSubmissions:   0,
+			StartTime:        recordTimestamp(),
+			Images:           task.Images[i:Min(i+task_size, size)],
+			TaskSize:         task_size}
 
 		assignment_id = assignment_id + 1
 
@@ -486,7 +485,7 @@ func requestInfoHandler(w http.ResponseWriter, r *http.Request) {
 	} else if Exists(assignment_path) {
 		existing_path = assignment_path
 	} else {
-		Error.Println("Can not find",assignment_path,
+		Error.Println("Can not find", assignment_path,
 			request.ProjectName, request.AssignmentID)
 		http.NotFound(w, r)
 		return
