@@ -11,11 +11,11 @@ import (
 )
 
 var (
-	Trace    *log.Logger
-	Info     *log.Logger
-	Warning  *log.Logger
-	Error    *log.Logger
-	port     = flag.String("port", "", "")
+	Trace   *log.Logger
+	Info    *log.Logger
+	Warning *log.Logger
+	Error   *log.Logger
+	port    = flag.String("port", "", "")
 	dataDir = flag.String("data_dir", "", "")
 )
 
@@ -42,7 +42,7 @@ func Init(
 		log.Ldate|log.Ltime)
 
 	flag.StringVar(port, "s", "8686", "")
-	flag.StringVar(dataDir, "d", GetProjPath() + "/data", "")
+	flag.StringVar(dataDir, "d", GetProjPath()+"/data", "")
 }
 
 var HTML []byte
@@ -53,7 +53,7 @@ func main() {
 	flag.Parse()
 	// Mux for static files
 	mux = http.NewServeMux()
-	mux.Handle("/", http.FileServer(http.Dir(GetProjPath() + "/app")))
+	mux.Handle("/", http.FileServer(http.Dir(GetProjPath()+"/app")))
 
 	// routes
 	http.HandleFunc("/", parse(indexHandler))
