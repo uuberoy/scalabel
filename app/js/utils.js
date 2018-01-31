@@ -125,7 +125,7 @@ function submitAssignment() {
     // console.log(assignment.images);
     // console.log(assignment);
 
-    x.open('POST', '/postSubmission');
+    x.open('POST', './postSubmission');
     x.send(JSON.stringify(assignment));
 }
 
@@ -144,7 +144,7 @@ function submitLog() {
     assignment.numLabeledImages = currentIndex + 1;
     assignment.userAgent = navigator.userAgent;
 
-    x.open('POST', '/postLog');
+    x.open('POST', './postLog');
     x.send(JSON.stringify(assignment));
 }
 
@@ -196,7 +196,7 @@ function loadAssignment() {
         'projectName': projectName,
     });
 
-    x.open('POST', '/requestSubmission');
+    x.open('POST', './requestSubmission');
     x.send(request);
 }
 
