@@ -124,7 +124,7 @@
 
 <script type="text/javascript">
     // Global variables
-    var image_list = [];
+    var imageList = [];
     var currentIndex = 0;
     var numDisplay = 0;
     var bboxLabeling;
@@ -168,7 +168,7 @@
             saveLabels();
             // auto save submission for the current session.
             submitAssignment();
-            if (currentIndex !== image_list.length - 1) {
+            if (currentIndex !== imageList.length - 1) {
                 addEvent("save", currentIndex);
             } else {
                 addEvent("submit", currentIndex);
