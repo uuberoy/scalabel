@@ -13,10 +13,23 @@ var LabelList;
 var LabelChart;
 var preloaded_images = [];
 var assignment;
-var numBbox = 0;
-var numLight = 0;
-var num_poly = 0;
+var numPoly = 0;
 var type;
+
+// Go to previous image
+$("#prev_btn").click(function () {
+    goToImage(currentIndex - 1);
+});
+
+// Go to next image
+$("#next_btn").click(function () {
+    goToImage(currentIndex + 1);
+});
+
+// Save task
+$("#save_btn").click(function () {
+    save();
+});
 
 /**
  * Summary: Record timestamp in milliseconds, action, and target image index.
@@ -103,14 +116,14 @@ function resetEvents() {
 
     $("#image_finder").find('input[name="image_id"]').val(currentIndex + 1);
     $("#find_btn").click(function () {
-        index =
+        let index =
             parseInt($("#image_finder").find('input[name="image_id"]').val()) - 1;
-        goToImage(index)
+        goToImage(index);
     });
 
     $('#image_finder').submit(function () {
         return false;
-    })
+    });
 }
 
 /**
@@ -144,7 +157,6 @@ function updateCategory(){
     select.setAttribute("size", LabelList.length);
     if (category.length !== 0) {
         for (var i = 0; i < category.length; i++) {
-            var tmp = category[i];
             if (category[i]) {
                 $("select#category_select").append("<option>" + category[i] + "</option>");
             }
