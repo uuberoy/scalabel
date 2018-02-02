@@ -4,12 +4,26 @@
 */
 /* exported loadAssignment goToImage getIPAddress */
 
+// Global variables
+var imageList = [];
+var currentIndex = 0;
+var numDisplay = 0;
+var bboxLabeling;
+var LabelList;
+var LabelChart;
+var preloaded_images = [];
+var assignment;
+var numBbox = 0;
+var numLight = 0;
+var num_poly = 0;
+var type;
+
 /**
-* Summary: Record timestamp in milliseconds, action, and target image index.
-* @param {type} action: To be completed.
-* @param {type} index: Description.
-* @param {type} position: Description.
-*/
+ * Summary: Record timestamp in milliseconds, action, and target image index.
+ * @param {type} action: To be completed.
+ * @param {type} index: Description.
+ * @param {type} position: Description.
+ */
 function addEvent(action, index, position) {
     if (!assignment.events) {
         assignment.events = [];
@@ -24,10 +38,10 @@ function addEvent(action, index, position) {
 }
 
 /**
-* Summary: Preload images using browser caching.
-* @param {type} imageArray: To be completed.
-* @param {type} index: Description.
-*/
+ * Summary: Preload images using browser caching.
+ * @param {type} imageArray: To be completed.
+ * @param {type} index: Description.
+ */
 function preload(imageArray, index) {
     index = index || 0;
     if (imageArray && imageArray.length > index) {
@@ -64,9 +78,9 @@ function preload(imageArray, index) {
 }
 
 /**
-* Summary: To be completed.
-*
-*/
+ * Summary: To be completed.
+ *
+ */
 function updateProgressBar() {
     let progress = $('#progress');
     progress.html(' ' + (currentIndex + 1).toString() + '/' +
@@ -74,9 +88,35 @@ function updateProgressBar() {
 }
 
 /**
-* Summary: To be completed.
-*
-*/
+ * Summary: To be completed.
+ *
+ */
+function resetEvents() {
+    $("[name='occluded-checkbox']").bootstrapSwitch();
+    $("[name='truncated-checkbox']").bootstrapSwitch();
+
+    $('.btn-popover').hover(function () {
+        $('.btn-popover').popover('show');
+    }, function () {
+        $('.btn-popover').popover('hide');
+    });
+
+    $("#image_finder").find('input[name="image_id"]').val(currentIndex + 1);
+    $("#find_btn").click(function () {
+        index =
+            parseInt($("#image_finder").find('input[name="image_id"]').val()) - 1;
+        goToImage(index)
+    });
+
+    $('#image_finder').submit(function () {
+        return false;
+    })
+}
+
+/**
+ * Summary: To be completed.
+ *
+ */
 function updateCategorySelect() {
     if (type == 'poly') {
         updateCategory();
@@ -94,9 +134,33 @@ function updateCategorySelect() {
 }
 
 /**
-* Summary: Update global image list.
-*
-*/
+ * Summary: To be completed.
+ *
+ */
+
+function updateCategory(){
+    var category = LabelList;
+    var select = document.getElementById("category_select");
+    select.setAttribute("size", LabelList.length);
+    if (category.length !== 0) {
+        for (var i = 0; i < category.length; i++) {
+            var tmp = category[i];
+            if (category[i]) {
+                $("select#category_select").append("<option>" + category[i] + "</option>");
+            }
+        }
+        $("#category_select").val(category[0]);
+        document.getElementById("name_select").setAttribute("size", LabelChart[0].length);
+        for(var j = 0; j < LabelChart[0].length; j++)
+            $("select#name_select").append("<option>" + LabelChart[0][j] + "</option>");
+        $("#name_select").val(LabelChart[0][0]);
+    }
+}
+
+/**
+ * Summary: Update global image list.
+ *
+ */
 function saveLabels() {
     if (type == 'bbox') {
         bboxLabeling.submitLabels();
@@ -109,9 +173,9 @@ function saveLabels() {
 }
 
 /**
-* Summary: To be completed.
-*
-*/
+ * Summary: To be completed.
+ *
+ */
 function submitAssignment() {
     let x = new XMLHttpRequest();
     x.onreadystatechange = function() {
@@ -130,9 +194,25 @@ function submitAssignment() {
 }
 
 /**
-* Summary: To be completed.
-*
-*/
+ * Summary: To be completed.
+ *
+ */
+function save() {
+    saveLabels();
+    // auto save submission for the current session.
+    submitAssignment();
+    if (currentIndex !== imageList.length - 1) {
+        addEvent("save", currentIndex);
+    } else {
+        addEvent("submit", currentIndex);
+        alert("Good Job! You've completed this assignment.");
+    }
+}
+
+/**
+ * Summary: To be completed.
+ *
+ */
 function submitLog() {
     let x = new XMLHttpRequest();
     x.onreadystatechange = function() {
@@ -149,10 +229,11 @@ function submitLog() {
 }
 
 /**
-* Summary: To be completed.
-*
-*/
+ * Summary: To be completed.
+ *
+ */
 function loadAssignment() {
+    resetEvents();
     let x = new XMLHttpRequest();
     x.onreadystatechange = function() {
         if (x.readyState === 4) {
@@ -201,9 +282,9 @@ function loadAssignment() {
 }
 
 /**
-* Summary: To be completed.
-*
-*/
+ * Summary: To be completed.
+ *
+ */
 function getIPAddress() {
     $.getJSON('//ipinfo.io/json', function(data) {
         assignment.ipAddress = data;
@@ -211,9 +292,9 @@ function getIPAddress() {
 }
 
 /**
-* Summary: To be completed.
-* @param {type} index: Description.
-*/
+ * Summary: To be completed.
+ * @param {type} index: Description.
+ */
 function goToImage(index) {
     saveLabels();
     // auto save log every twenty five images displayed

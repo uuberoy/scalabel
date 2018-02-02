@@ -33,7 +33,7 @@
                    href="instruction.html" target="view_window"
                    data-content="Please view instructions and annotate image of given categories.">
                     Instruction</a>
-                <a href="#" id="save_btn" style="position:absolute;right:15px;"
+                <a href="#" id="save_btn" onclick="save()" style="position:absolute;right:15px;"
                    class="btn btn-primary btn-primary">Save</a>
             </h2>
         </div>
@@ -71,10 +71,10 @@
             <div class="col-sm-1">
                 <ul class="pagination" id="pagination_control">
                     <li>
-                        <a id="prev_btn">&laquo;</a>
+                        <a id="prev_btn" onclick="goToImage(currentIndex - 1)">&laquo;</a>
                     </li>
                     <li>
-                        <a id="next_btn">&raquo;</a>
+                        <a id="next_btn" onclick="goToImage(currentIndex + 1)">&raquo;</a>
                     </li>
                     <div class="text-muted" id="progress"></div>
                 </ul>
@@ -122,69 +122,15 @@
 <script src="./js/thirdparty/tether.min.js"></script>
 <script src="./js/thirdparty/bootstrap-switch.js"></script>
 
-<script type="text/javascript">
-    // Global variables
-    var imageList = [];
-    var currentIndex = 0;
-    var numDisplay = 0;
-    var bboxLabeling;
-    var preloaded_images = [];
-    var assignment;
-    var numBbox = 0;
-    var numLight = 0;
-    var type = "bbox";
-</script>
-
 <!-- Helper JavaScript -->
-<script src="./js/utils.js?1"></script>
+<script src="./js/utils.js"></script>
 
 <!-- BBox Labeling JavaScript -->
-<script src="./js/image.js?7"></script>
+<script src="./js/image.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
-
         loadAssignment();
-        $("#image_finder").find('input[name="image_id"]').val(currentIndex +
-            1);
-        // Go to previous image
-        $("#prev_btn").click(function () {
-            goToImage(currentIndex - 1)
-        });
-
-        // Go to next image
-        $("#next_btn").click(function () {
-            goToImage(currentIndex + 1)
-        });
-
-        $("#find_btn").click(function () {
-            index =
-                parseInt($("#image_finder").find('input[name="image_id"]').val()) - 1;
-            goToImage(index)
-        });
-
-        // Manual save button
-        $("#save_btn").click(function () {
-            saveLabels();
-            // auto save submission for the current session.
-            submitAssignment();
-            if (currentIndex !== imageList.length - 1) {
-                addEvent("save", currentIndex);
-            } else {
-                addEvent("submit", currentIndex);
-                alert("Good Job! You've completed this assignment.");
-            }
-        });
-
-        $('.btn-popover').hover(function () {
-            $('.btn-popover').popover('show');
-        }, function () {
-            $('.btn-popover').popover('hide');
-        });
-        $('#image_finder').submit(function () {
-            return false;
-        })
-
     });
 
 
