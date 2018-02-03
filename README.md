@@ -26,10 +26,14 @@ should be publicly accessible or stored in the server. Refer to example in
 /example/image_list.json
 
 ## Running Server ##
+Go to the golang folder:  
+```
+cd app/golang
+```
 Specify a port to start the server and a directory path to store 
 image annotations. Use the following command to run the server:
 ```
-go run main.go --port 8686 --data_dir "../data"
+go run main.go image.go utils.go --port 8686 --data_dir "../data"
 ```
 
 ## Navigating the tool ##
