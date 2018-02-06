@@ -10,7 +10,7 @@ var currentIndex = 0;
 var numDisplay = 0;
 var bboxLabeling;
 var LabelList;
-var LabelChart;
+var LabelChart = [];
 var preloaded_images = [];
 var assignment;
 var numPoly = 0;
