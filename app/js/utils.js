@@ -217,7 +217,7 @@ function save() {
         addEvent("save", currentIndex);
     } else {
         addEvent("submit", currentIndex);
-        alert("Good Job! You've completed this assignment.");
+        // alert("Good Job! You've completed this assignment.");
     }
 }
 
