@@ -45,7 +45,7 @@ function addEvent(action, index, position) {
         'timestamp': Math.round(new Date() / 1000),
         'action': action,
         'targetIndex': index.toString(),
-        'position': position, // only applicable to certain actions
+        'position': position // only applicable to certain actions
     };
     assignment.events.push(event);
 }
@@ -63,14 +63,14 @@ function preload(imageArray, index) {
             // addEvent("image loaded", index);
             if (index === 0) {
                 // display when the first image is loaded
-                if (type == 'bbox') {
+                if (type === 'bbox') {
                     bboxLabeling = new BBoxLabeling({
-                        url: preloaded_images[currentIndex].src,
+                        url: preloaded_images[currentIndex].src
                     });
                     bboxLabeling.replay();
                 } else {
                     polyLabeling = new PolyLabeling({
-                        url: preloaded_images[currentIndex].src,
+                        url: preloaded_images[currentIndex].src
                     });
                     polyLabeling.updateImage(
                         preloaded_images[currentIndex].src);
@@ -152,8 +152,8 @@ function updateCategorySelect() {
  */
 
 function updateCategory(){
-    var category = LabelList;
-    var select = document.getElementById("category_select");
+    let category = LabelList;
+    let select = document.getElementById("category_select");
     select.setAttribute("size", LabelList.length);
     if (category.length !== 0) {
         for (var i = 0; i < category.length; i++) {
@@ -258,10 +258,10 @@ function loadAssignment() {
 
             // preload images
             preload(imageList);
-            if (type == 'poly') {
-                for (let idx in imageList) {
+            if (type === 'poly') {
+                for (var idx in imageList) {
                     if (imageList[idx].hasOwnProperty('labels')) {
-                        let labels = imageList[idx].labels;
+                        var labels = imageList[idx].labels;
                         for (let key in labels) {
                             if (labels.hasOwnProperty(key)) {
                                 // let label = labels[key];
@@ -336,7 +336,7 @@ function goToImage(index) {
         }
         addEvent('display', index);
         updateProgressBar();
-        if (type == 'bbox') {
+        if (type === 'bbox') {
             bboxLabeling.updateImage(preloaded_images[index].src);
             bboxLabeling.replay();
         } else {
