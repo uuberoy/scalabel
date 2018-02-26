@@ -210,9 +210,10 @@ function updateCategory() {
     $('#category_select').val(category[0]);
     document.getElementById('name_select').
         setAttribute('size', LabelChart[0].length);
-    for (var j = 0; j < LabelChart[0].length; j++)
+    for (let j = 0; j < LabelChart[0].length; j++) {
       $('select#name_select').
           append('<option>' + LabelChart[0][j] + '</option>');
+    }
     $('#name_select').val(LabelChart[0][0]);
   }
 }
