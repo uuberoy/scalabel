@@ -2,7 +2,7 @@
  type:true imageList:true numDisplay:true assignment:true
  BBoxLabeling currentIndex:true PolyLabeling updateCategory numPoly:true
 */
-/* exported loadAssignment goToImage getIPAddress */
+/* exported loadAssignment goToImage getIPAddress pickColorPalette*/
 
 // Global variables
 var imageList = [];
