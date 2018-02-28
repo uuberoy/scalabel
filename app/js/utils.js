@@ -2,7 +2,7 @@
  type:true imageList:true numDisplay:true assignment:true
  BBoxLabeling currentIndex:true PolyLabeling updateCategory numPoly:true
 */
-/* exported loadAssignment goToImage getIPAddress pickColorPalette*/
+/* exported loadAssignment goToImage getIPAddress*/
 
 // Global variables
 let imageList = [];
@@ -15,29 +15,6 @@ let preloadedImages = [];
 let assignment;
 let numPoly = 0;
 let type;
-
-let COLOR_PALETTE = [
-  [31, 119, 180],
-  [174, 199, 232],
-  [255, 127, 14],
-  [255, 187, 120],
-  [44, 160, 44],
-  [152, 223, 138],
-  [214, 39, 40],
-  [255, 152, 150],
-  [148, 103, 189],
-  [197, 176, 213],
-  [140, 86, 75],
-  [196, 156, 148],
-  [227, 119, 194],
-  [247, 182, 210],
-  [127, 127, 127],
-  [199, 199, 199],
-  [188, 189, 34],
-  [219, 219, 141],
-  [23, 190, 207],
-  [158, 218, 229],
-];
 
 // Go to previous image
 $('#prev_btn').click(function() {
@@ -53,34 +30,6 @@ $('#next_btn').click(function() {
 $('#save_btn').click(function() {
   save();
 });
-
-let blendColor = function(rgb, base, ratio) {
-  let newRgb = [0, 0, 0];
-  for (let i = 0; i < 3; i++) {
-    newRgb[i] = Math.max(0,
-        Math.min(255, rgb[i] + Math.round((base[i] - rgb[i]) * ratio)));
-  }
-  return newRgb;
-};
-
-
-/**
- * Summary: To be completed.
- * @param {type} index: Description.
- * @return {type}: To be completed.
- * check full palette and usage: https://jsfiddle.net/739397/e980vft0/
- */
-function pickColorPalette(index) {
-  let colorIndex = index % COLOR_PALETTE.length;
-  let shadeIndex = (Math.floor(index / COLOR_PALETTE.length)) % 3;
-  let rgb = COLOR_PALETTE[colorIndex];
-  if (shadeIndex === 1) {
-    rgb = blendColor(rgb, [255, 255, 255], 0.4);
-  } else if (shadeIndex === 2) {
-    rgb = blendColor(rgb, [0, 0, 0], 0.2);
-  }
-  return rgb;
-}
 
 /**
  * Summary: Record timestamp in milliseconds, action, and target image index.
