@@ -26,14 +26,14 @@ should be publicly accessible or stored in the server. Refer to example in
 /example/image_list.json
 
 ## Running Server ##
-Go to the golang folder:  
+Compiles the packages named by the import paths, along with their dependencies, but it does not install the results.:  
 ```
-cd app/golang
+go build -i -o bin/sat ./app/golang
 ```
 Specify a port to start the server and a directory path to store 
 image annotations. Use the following command to run the server:
 ```
-go run main.go image.go utils.go --port 8686 --data_dir "../data"
+./bin/sat --port 8686 --data_dir "../data"
 ```
 
 ## Navigating the tool ##

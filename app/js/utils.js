@@ -1,20 +1,20 @@
-/* global preloaded_images:true polyLabeling:true bboxLabeling:true
+/* global preloadedImages:true polyLabeling:true bboxLabeling:true
  type:true imageList:true numDisplay:true assignment:true
  BBoxLabeling currentIndex:true PolyLabeling updateCategory numPoly:true
 */
 /* exported loadAssignment goToImage getIPAddress pickColorPalette*/
 
 // Global variables
-var imageList = [];
-var currentIndex = 0;
-var numDisplay = 0;
-var bboxLabeling;
-var LabelList;
-var LabelChart = [];
-var preloaded_images = [];
-var assignment;
-var numPoly = 0;
-var type;
+let imageList = [];
+let currentIndex = 0;
+let numDisplay = 0;
+let bboxLabeling;
+let LabelList;
+let LabelChart = [];
+let preloadedImages = [];
+let assignment;
+let numPoly = 0;
+let type;
 
 let COLOR_PALETTE = [
   [31, 119, 180],
@@ -63,7 +63,13 @@ let blendColor = function(rgb, base, ratio) {
   return newRgb;
 };
 
-/* check full palette and usage: https://jsfiddle.net/739397/e980vft0/ */
+
+/**
+ * Summary: To be completed.
+ * @param {type} index: Description.
+ * @return {type}: To be completed.
+ * check full palette and usage: https://jsfiddle.net/739397/e980vft0/
+ */
 function pickColorPalette(index) {
   let colorIndex = index % COLOR_PALETTE.length;
   let shadeIndex = (Math.floor(index / COLOR_PALETTE.length)) % 3;
@@ -90,7 +96,7 @@ function addEvent(action, index, position) {
     'timestamp': Math.round(new Date() / 1000),
     'action': action,
     'targetIndex': index.toString(),
-    'position': position // only applicable to certain actions
+    'position': position, // only applicable to certain actions
   };
   assignment.events.push(event);
 }
@@ -103,32 +109,32 @@ function addEvent(action, index, position) {
 function preload(imageArray, index) {
   index = index || 0;
   if (imageArray && imageArray.length > index) {
-    preloaded_images[index] = new Image();
-    preloaded_images[index].onload = function() {
+    preloadedImages[index] = new Image();
+    preloadedImages[index].onload = function() {
       // addEvent("image loaded", index);
       if (index === 0) {
         // display when the first image is loaded
         if (type === 'bbox') {
           bboxLabeling = new BBoxLabeling({
-            url: preloaded_images[currentIndex].src,
+            url: preloadedImages[currentIndex].src,
           });
           bboxLabeling.replay();
         } else {
           polyLabeling = new PolyLabeling({
-            url: preloaded_images[currentIndex].src,
+            url: preloadedImages[currentIndex].src,
           });
           polyLabeling.updateImage(
-              preloaded_images[currentIndex].src);
+              preloadedImages[currentIndex].src);
         }
         numDisplay = numDisplay + 1;
       }
       preload(imageArray, index + 1);
     };
-    preloaded_images[index].onerror = function() {
+    preloadedImages[index].onerror = function() {
       addEvent('image fails to load', index);
       preload(imageArray, index + 1);
     };
-    preloaded_images[index].src = imageArray[index].url;
+    preloadedImages[index].src = imageArray[index].url;
   } else {
     $('#prev_btn').attr('disabled', false);
     $('#next_btn').attr('disabled', false);
@@ -195,13 +201,12 @@ function updateCategorySelect() {
  * Summary: To be completed.
  *
  */
-
 function updateCategory() {
   let category = LabelList;
   let select = document.getElementById('category_select');
   select.setAttribute('size', LabelList.length);
   if (category.length !== 0) {
-    for (var i = 0; i < category.length; i++) {
+    for (let i = 0; i < category.length; i++) {
       if (category[i]) {
         $('select#category_select').
             append('<option>' + category[i] + '</option>');
@@ -308,9 +313,9 @@ function loadAssignment() {
       // preload images
       preload(imageList);
       if (type === 'poly') {
-        for (var idx in imageList) {
+        for (let idx in imageList) {
           if (imageList[idx].hasOwnProperty('labels')) {
-            var labels = imageList[idx].labels;
+            let labels = imageList[idx].labels;
             for (let key in labels) {
               if (labels.hasOwnProperty(key)) {
                 // let label = labels[key];
@@ -386,11 +391,11 @@ function goToImage(index) {
     addEvent('display', index);
     updateProgressBar();
     if (type === 'bbox') {
-      bboxLabeling.updateImage(preloaded_images[index].src);
+      bboxLabeling.updateImage(preloadedImages[index].src);
       bboxLabeling.replay();
     } else {
       polyLabeling.clearAll();
-      polyLabeling.updateImage(preloaded_images[index].src);
+      polyLabeling.updateImage(preloadedImages[index].src);
     }
   }
 }
