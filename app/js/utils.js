@@ -67,7 +67,8 @@ function preload(imageArray, index) {
           bboxLabeling = new BBoxLabeling({
             url: preloadedImages[currentIndex].src,
           });
-          bboxLabeling.replay();
+          bboxLabeling.updateImage(
+            preloadedImages[currentIndex].src);
         } else {
           polyLabeling = new PolyLabeling({
             url: preloadedImages[currentIndex].src,
@@ -105,6 +106,7 @@ function updateProgressBar() {
  *
  */
 function resetEvents() {
+  $('#custom_attribute').hide();
   $('[name=\'occluded-checkbox\']').bootstrapSwitch();
   $('[name=\'truncated-checkbox\']').bootstrapSwitch();
 
@@ -136,6 +138,7 @@ function updateCategorySelect() {
   } else {
     let category = assignment.category;
     let categorySelect = $('select#category_select');
+    categorySelect.attr('size', category.length);
     for (let i = 0; i < category.length; i++) {
       if (category[i]) {
         categorySelect.append('<option>' +
@@ -143,6 +146,36 @@ function updateCategorySelect() {
       }
     }
     $('select#category_select').val(assignment.category[0]);
+  }
+}
+
+
+/**
+ * Summary: To be completed.
+ *
+ */
+function updateAttributeSelect() {
+  let attributes = assignment.attributes;
+  if (attributes) {
+    let attributeNames = Object.keys(attributes);
+    if (attributeNames) {
+      $('#custom_attribute').show(); 
+      attributeNames.forEach(function (a) {
+        let attributeOptions = attributes[a];
+        let attributeSelect = $("<select class='form-control'"
+          + "id='" + a + "_select'" + "></select>");
+        attributeSelect.id = a + "_select";
+        $("#custom_attribute")
+          .append('<p>' + a + '</p>')
+          .append(attributeSelect)
+          .append('<br>');
+        attributeOptions.forEach(function (o) {
+          if (attributeOptions) {
+            attributeSelect.append('<option>' + o + '</option>');
+          }
+        });
+      }); 
+    }
   }
 }
 
@@ -278,6 +311,7 @@ function loadAssignment() {
         $('#poly_count').text(numPoly);
       }
       updateCategorySelect();
+      updateAttributeSelect();
       updateProgressBar();
     }
   };
