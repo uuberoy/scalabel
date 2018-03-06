@@ -68,7 +68,7 @@ function preload(imageArray, index) {
             url: preloadedImages[currentIndex].src,
           });
           bboxLabeling.updateImage(
-            preloadedImages[currentIndex].src);
+              preloadedImages[currentIndex].src);
         } else {
           polyLabeling = new PolyLabeling({
             url: preloadedImages[currentIndex].src,
@@ -159,22 +159,22 @@ function updateAttributeSelect() {
   if (attributes) {
     let attributeNames = Object.keys(attributes);
     if (attributeNames) {
-      $('#custom_attribute').show(); 
-      attributeNames.forEach(function (a) {
+      $('#custom_attribute').show();
+      attributeNames.forEach(function(a) {
         let attributeOptions = attributes[a];
-        let attributeSelect = $("<select class='form-control'"
-          + "id='" + a + "_select'" + "></select>");
-        attributeSelect.id = a + "_select";
-        $("#custom_attribute")
-          .append('<p>' + a + '</p>')
-          .append(attributeSelect)
-          .append('<br>');
-        attributeOptions.forEach(function (o) {
+        let attributeSelect = $('<select class=\'form-control\''
+            + 'id=\'' + a + '_select\'' + '></select>');
+        attributeSelect.id = a + '_select';
+        $('#custom_attribute')
+            .append('<p>' + a + '</p>')
+            .append(attributeSelect)
+            .append('<br>');
+        attributeOptions.forEach(function(o) {
           if (attributeOptions) {
             attributeSelect.append('<option>' + o + '</option>');
           }
         });
-      }); 
+      });
     }
   }
 }
@@ -190,16 +190,16 @@ function updateCategory() {
   if (category.length !== 0) {
     for (let i = 0; i < category.length; i++) {
       if (category[i]) {
-        $('select#category_select').
-            append('<option>' + category[i] + '</option>');
+        $('select#category_select').append('<option>'
+            + category[i] + '</option>');
       }
     }
     $('#category_select').val(category[0]);
-    document.getElementById('name_select').
-        setAttribute('size', LabelChart[0].length);
+    document.getElementById('name_select')
+        .setAttribute('size', LabelChart[0].length);
     for (let j = 0; j < LabelChart[0].length; j++) {
-      $('select#name_select').
-          append('<option>' + LabelChart[0][j] + '</option>');
+      $('select#name_select').append('<option>'
+          + LabelChart[0][j] + '</option>');
     }
     $('#name_select').val(LabelChart[0][0]);
   }
