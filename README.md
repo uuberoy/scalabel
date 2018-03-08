@@ -51,6 +51,10 @@ task configurations such as project name, task size, label type, and vendor ID.
 * **Label type**: Choose one of the five label types: '2d_bbox', '2d_road', '2d_seg', '2d_lane','image'.
 * **Vendor ID**: This keeps track of which vendor/annotator to be assigned to. 
 Specify '0' if unsure.
+* **Image List**: Specify list of paths to image files. (Input format refers to image_list.json in *example folder*.)
+* **Label**: Specify label categories (object classes) such as car, person and truck etc. (Input format refers to ~_label.txt in *example folder*.)
+* **Attributes**: Specify attributes which describe more fine-grained and intra-class variation(e.g. is the person walking or standing, or what is the traffic light color). This feature is optional. 
+(Input format refers to ~_attributes.json in *example folder*.)
 
 2. Click '**enter**', then '**go to dashboard**' will direct you to the dashboard --
 http://localhost:8686/dashboard?project_name=<project_name>... From here, you can 
