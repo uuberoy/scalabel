@@ -105,7 +105,7 @@
                 background-image: url('./src/loading.png');
                 background-size:cover">
         </canvas>
-        <canvas id="pickup_canvas" width="900" height="470"
+        <canvas id="hidden_canvas" width="900" height="470"
                 style="position:absolute">
         </canvas>
         <div id="crosshair-h" class="hair"></div>
@@ -159,14 +159,14 @@
 <!-- Helper JavaScript -->
 <script src="./js/sat.js"></script>
 <!-- BBox Labeling JavaScript -->
-<script src="./js/box.js"></script>
+<script src="./js/box2d.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sprintf/1.1.1/sprintf.min.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
         const type = "bbox";
-        let sat = new Sat(BBoxLabeling, BBox);
+        let sat = new Sat(Box2dImage, Box2d);
         sat.load();
     });
 </script>
