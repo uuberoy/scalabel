@@ -33,7 +33,7 @@ go build -i -o bin/sat ./app/golang
 Specify a port to start the server and a directory path to store 
 image annotations. Use the following command to run the server:
 ```
-./bin/sat --port 8686 --data_dir "../data"
+./bin/sat --config config.yml
 ```
 
 ## Navigating the tool ##
