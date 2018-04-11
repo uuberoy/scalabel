@@ -11,7 +11,7 @@ A screenshot of bounding box annotation interface:
 ```
 mkdir ../data
 ```
-* Install Golang by building and running a Docker image from the 
+* (Optional) Install Golang by building and running a Docker image from the 
 Dockerfile.  
 e.x.
 ```
