@@ -285,8 +285,6 @@ function loadAssignment() {
   let x = new XMLHttpRequest();
   x.onreadystatechange = function() {
     if (x.readyState === 4) {
-      console.log("Check here:  ");
-      console.log(x.response);
       assignment = JSON.parse(x.response);
       imageList = assignment.items;
       currentIndex = 0;
