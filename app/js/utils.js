@@ -285,9 +285,8 @@ function loadAssignment() {
   let x = new XMLHttpRequest();
   x.onreadystatechange = function() {
     if (x.readyState === 4) {
-      // console.log(x.response);
       assignment = JSON.parse(x.response);
-      imageList = assignment.images;
+      imageList = assignment.items;
       currentIndex = 0;
       addEvent('start labeling', currentIndex);
       assignment.startTime = Math.round(new Date() / 1000);
