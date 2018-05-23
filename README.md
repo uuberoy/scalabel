@@ -1,4 +1,4 @@
-# Scalable Anntoation Tooling
+# Scalable Annotation Tooling
 
 [![Build Status](https://travis-ci.com/ucbdrive/sat.svg?token=9QKS6inVmkjyhrWUHjqT)](https://travis-ci.com/ucbdrive/sat)
 
