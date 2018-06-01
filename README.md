@@ -1,4 +1,6 @@
-# Scalable Anntoation Tooling
+***Note: This code base is under-going dramatic changes in preparation of our first release slated by the end of June.***
+
+# Scalable Annotation Tooling
 
 [![Build Status](https://travis-ci.com/ucbdrive/sat.svg?token=9QKS6inVmkjyhrWUHjqT)](https://travis-ci.com/ucbdrive/sat)
 

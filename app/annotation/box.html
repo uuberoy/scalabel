@@ -38,6 +38,10 @@
                     <a href="#" id="save_btn" style="position:absolute;right:15px;" class="btn btn-primary btn-primary">
                         Save
                     </a>
+                    <div class="btn-group">
+                        <button id="increase_btn" class="btn btn-primary">+</button>
+                        <button href="#" id="decrease_btn" class="btn btn-primary">-</button>
+                    </div>
                 </h2>
             </div>
         </div>
@@ -93,14 +97,16 @@
                     </a>
                 </div>
             </div>
-            <canvas id="image_canvas" width="900" height="470" style="position:absolute; background-image: url('./src/loading.png'); background-size:cover">
-                Unsupported browser!
-            </canvas>
-            <canvas id="hidden_canvas" width="900" height="470" style="position:absolute">
-                Unsupported browser!
-            </canvas>
-            <div id="crosshair-h" class="hair"></div>
-            <div id="crosshair-v" class="hair"></div>
+            <div id="div_canvas" style=" position: relative; float: left; width: 900px; height: 470px; overflow:scroll; ">
+                <canvas id="image_canvas" width="900" height="470" style="position: absolute; background-image: url('./src/loading.png'); background-size:cover">
+                    Unsupported browser!
+                </canvas>
+                <canvas id="hidden_canvas" width="900" height="470" style="position: absolute; ">
+                    Unsupported browser!
+                </canvas>
+                <div id="crosshair-h" class="hair"></div>
+                <div id="crosshair-v" class="hair"></div>
+            </div>
         </div>
         <!-- /.row -->
         <div class="row">
