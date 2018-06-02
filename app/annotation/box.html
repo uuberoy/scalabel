@@ -59,11 +59,10 @@
                             <p>Label Category</p>
                             <select id="category_select" size="10" class="form-control">
                                 <!-- iterate over object categories -->
-                                {{ range $key, $value := .Category }}
-                                <option value={{$value}}>{{ $value }}</option>
+                                {{ range $key, $value := .Categories }}
+                                <option value={{$value}}>{{ $value.Name }}</option>
                                 {{ end }}
                             </select>
-
                         </div>
                         <div class="form-group">
                             <input type="checkbox" name="occluded-checkbox" id="occluded_checkbox" data-on-color="info" data-on-text="Yes" data-off-text="No" data-size="small" data-label-text="Occluded">
@@ -170,6 +169,7 @@
             // initialize the occluded/truncated switches with bootstrap
             $('[name=\'occluded-checkbox\']').bootstrapSwitch();
             $('[name=\'truncated-checkbox\']').bootstrapSwitch();
+          document.getElementById('save_btn').onclick = function() {sat.save()};
         });
 
     </script>
