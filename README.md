@@ -30,7 +30,7 @@ should be publicly accessible or stored in the server. Refer to example in
 ## Running Server ##
 Compiles the packages named by the import paths, along with their dependencies, but it does not install the results.:  
 ```
-go build -i -o bin/sat ./app/golang
+go build -i -o bin/sat ./server/go
 ```
 Specify a port to start the server and a directory path to store 
 image annotations. Use the following command to run the server:
