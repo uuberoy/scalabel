@@ -13,11 +13,12 @@ A screenshot of bounding box annotation interface:
 ```
 mkdir ../data
 ```
-* (Optional) Install Golang by building and running a Docker image from the 
-Dockerfile.  
+* (Optional) Build and run a Docker image from the 
+Dockerfile. 
 e.x.
 ```
-docker build .
+docker build . -t 'scalabel:demo'
+docker run -it -p 8686:8686 scalabel:demo
 ```
 
 ## Images and Labels ##
