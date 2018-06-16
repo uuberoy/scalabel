@@ -1,10 +1,10 @@
 ***Note: This code base is under-going dramatic changes in preparation of our first release slated by the end of June.***
 
-# Scalable Annotation Tooling
+# ScaLabel
 
-[![Build Status](https://travis-ci.com/ucbdrive/sat.svg?token=9QKS6inVmkjyhrWUHjqT)](https://travis-ci.com/ucbdrive/sat)
+[![Build Status](https://travis-ci.com/ucbdrive/scalabel.svg?token=9QKS6inVmkjyhrWUHjqT&branch=master)](https://travis-ci.com/ucbdrive/scalabel)
 
-SAT is a versatile and scalable tool that supports all kinds of annotations needed in a driving database, such as bounding box, semantic instance segmentation, and lane detection.
+ScaLabel is a versatile and scalable tool that supports all kinds of annotations needed in a driving database, such as bounding box, semantic instance segmentation, and lane detection.
 A screenshot of bounding box annotation interface:
 ![alt text](/example/bbox_tool.jpg)
 
@@ -42,14 +42,14 @@ A screenshot of bounding box annotation interface:
         ```
         3. Compile the packages 
         ```
-        go build -i -o bin/sat ./server/go
+        go build -i -o bin/scalabel ./server/go
         ```
         4. Specify basic configurations (e.g. the port to start the server, 
         the data directory to store the image annotations, etc) in your own 
         `config.yml`. Refer to `app/config/default_config.yml` for the default configurations. 
         5. Launch the server by running 
         ```
-        ./bin/sat --config app/config/default_config.yml
+        ./bin/scalabel --config app/config/default_config.yml
         ```
     
 3. Access the server through the specifed port (we use `8686` as the default port
